@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NASA APOD - History</title>
+</head>
+<body>
+    <h1>Search for a Past APOD</h1>
+    <form method="post">
+        <label for="date">Select a date:</label>
+        <input type="date" id="date" name="date" min="1995-06-16" max="{{ today_date }}" required>
+        <button type="submit">Get APOD</button>
+    </form>
+    
+    {% if apod %}
+        <p>Date: {{ apod.date }}</p>
+        <img src="{{ apod.url }}" alt="APOD">
+        <p>{{ apod.explanation }}</p>
+        {% if apod.copyright %}
+            <p>Copyright: {{ apod.copyright }}</p>
+        {% endif %}
+    {% elif error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    
+    <br>
+    <a href="/">Back to Home</a>
+</body>
+</html>
